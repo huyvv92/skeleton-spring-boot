@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static vn.edu.nemo.core.Constants.*;
 
@@ -43,14 +44,23 @@ public class AuthService {
             validity = new Date(now + this.tokenValidityInMilliseconds);
         }
         String token = Jwts.builder()
-                .setSubject("admin")
+                .setSubject(email)
                 .setExpiration(validity)
-                //.claim(JWT_SCOPE,getAuthorities(user))
-                .claim(JWT_SCOPE,new ArrayList<>())
-                .signWith(SignatureAlgorithm.HS512, jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret())
+                .claim(JWT_SCOPE,getAuthorities(email))
+                //.claim(JWT_SCOPE,new ArrayList<>())
+                .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
         logger.info("Token generated for user {}, token: {}", email, token);
 
         return token;
+    }
+
+    public List<String> getAuthorities(String email) {
+        List<String> authorities = new ArrayList<>();
+        authorities.add("ROLE_USER");
+        if(email.equals("admin")){
+            authorities.add("ROLE_ADMIN");
+        }
+        return authorities;
     }
 }

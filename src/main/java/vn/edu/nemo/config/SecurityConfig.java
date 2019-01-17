@@ -14,7 +14,7 @@ import vn.edu.nemo.core.filters.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
@@ -65,7 +65,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/template/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/swagger-ui/*").permitAll();
-
-
     }
 }
