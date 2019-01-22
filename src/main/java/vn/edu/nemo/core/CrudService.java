@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
 import vn.edu.nemo.core.errors.BadRequestAlertException;
 import vn.edu.nemo.core.errors.UnauthorizedExpcetion;
 import vn.edu.nemo.core.rsql.CustomRsqlVisitor;
-import vn.edu.nemo.urmg.utils.SecurityUtils;
+import vn.edu.nemo.core.utils.SecurityUtils;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;

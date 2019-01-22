@@ -1,4 +1,4 @@
-package vn.edu.nemo.urmg.utils;
+package vn.edu.nemo.core.utils;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

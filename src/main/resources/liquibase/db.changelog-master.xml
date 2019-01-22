@@ -14,7 +14,7 @@
             </and>
         </or>
     </preConditions>
-    <!--<include file="src/main/resources/liquibase/db.changelog-1.1.sql" />-->
+    <include file="src/main/resources/liquibase/db.changelog-1.1.sql" />
 </databaseChangeLog>
 
 
