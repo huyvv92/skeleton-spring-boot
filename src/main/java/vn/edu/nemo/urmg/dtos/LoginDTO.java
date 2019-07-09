@@ -3,6 +3,7 @@ package vn.edu.nemo.urmg.dtos;
 public class LoginDTO {
     private String email;
     private String password;
+    private String companyId;
     private Boolean rememberMe;
 
     public String getEmail() {
@@ -27,5 +28,13 @@ public class LoginDTO {
 
     public void setRememberMe(Boolean rememberMe) {
         this.rememberMe = rememberMe;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

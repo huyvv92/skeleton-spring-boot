@@ -49,12 +49,14 @@ public class JwtFilter extends GenericFilterBean {
                 .parseClaimsJws(token)
                 .getBody();
         List<String> scopes = (ArrayList)claims.get(JWT_SCOPE);
+        String companyId = (String) claims.get(JWT_COMPANY_ID);
         Set<GrantedAuthority> authorities = new HashSet<>();
         for(String scope : scopes) {
             authorities.add(new SimpleGrantedAuthority(scope));
         }
 
-        User principal = new User(claims.getSubject(), "", authorities);
+        //User principal = new User(claims.getSubject(), "", authorities);
+        UserPrincipal principal = new UserPrincipal(claims.getSubject(), "", authorities, companyId);
 
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }

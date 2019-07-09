@@ -3,6 +3,7 @@ package vn.edu.nemo.urmg.endpoints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,12 @@ public class UserApiEndpoint extends CrudApiEndpoint<User, Long> {
     @RequestMapping(path = "/current", method = RequestMethod.POST)
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
 //    @PreAuthorize ("#model.email == authentication.name")
-    @PreAuthorize ("#model.email == principal.username")
-    public String currentUser(@RequestBody LoginDTO model) {
-        return "successful";
+    @PreAuthorize ("#model.companyId == principal.companyId")
+    public LoginDTO currentUser(@RequestBody LoginDTO model) {
+//        return userService.getLoginDTO();
+        LoginDTO tmp = new LoginDTO();
+        tmp.setCompanyId("2");
+        return tmp;
     }
 
     private UserService userService;

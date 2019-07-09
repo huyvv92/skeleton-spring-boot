@@ -47,6 +47,7 @@ public class AuthService {
                 .setSubject(email)
                 .setExpiration(validity)
                 .claim(JWT_SCOPE,getAuthorities(email))
+                .claim(JWT_COMPANY_ID, "1")
                 //.claim(JWT_SCOPE,new ArrayList<>())
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
